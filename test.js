@@ -10,7 +10,7 @@ const name = {
 	packageDirectory: 'find-up',
 	packageJson: 'package.json',
 	fixtureDirectory: 'fixture',
-	nodeModulesDir: 'node_modules',
+	modulesDirectory: 'node_modules',
 	baz: 'baz.js',
 	qux: 'qux.js'
 };
@@ -18,7 +18,7 @@ const name = {
 // These paths are relative to the project root
 const relative = {
 	fixtureDirectory: name.fixtureDirectory,
-	nodeModulesDir: name.nodeModulesDir
+	modulesDirectory: name.modulesDirectory
 };
 relative.baz = path.join(relative.fixtureDirectory, name.baz);
 relative.qux = path.join(relative.fixtureDirectory, name.qux);
@@ -192,7 +192,7 @@ test('sync (nested descendant directory)', t => {
 
 test('async (nested descendant directory, custom cwd)', async t => {
 	const filePath = await findUp(relative.barDir, {
-		cwd: relative.nodeModulesDir
+		cwd: relative.modulesDirectory
 	});
 
 	t.is(filePath, absolute.barDir);
@@ -200,7 +200,7 @@ test('async (nested descendant directory, custom cwd)', async t => {
 
 test('sync (nested descendant directory, custom cwd)', t => {
 	const filePath = findUp.sync(relative.barDir, {
-		cwd: relative.nodeModulesDir
+		cwd: relative.modulesDirectory
 	});
 
 	t.is(filePath, absolute.barDir);
